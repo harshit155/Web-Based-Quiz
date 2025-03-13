@@ -1,0 +1,34 @@
+#install python
+check version python3
+
+#django dependencies
+pip install django #django framework
+
+Django==5.1.7
+
+#Database Connectivity(MySQL)
+pip install mysqlclient
+
+mysqlclient==2.2.0
+
+#for password and authentication in database connectivity, use your password and user in settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'quiz_db',
+        'USER': 'root',    # use your user name
+        'PASSWORD': '1234567',    #use your password
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+
+#for creating administrator run command,
+python manage.py createsuperuser
+
+# to check working server, run command
+python manage.py runserver
+
+# and connect to sever at
+http://127.0.0.1:8000/
