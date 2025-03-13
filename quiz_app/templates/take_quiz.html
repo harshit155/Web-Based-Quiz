@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a Quiz</title>
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="color: rgb(25, 108, 181); text-align: center;">Here is your Quiz</h1>
+        <form method="POST" action="{% url 'take_quiz' %}"
+            {% csrf_token %}
+
+            <!-- Dropdown to Select a Quiz -->
+            <label>Select a Quiz:</label>
+            <select name="quiz_id" required>
+                <option value="">-- Select Quiz --</option>
+                {% for quiz in quizzes %}
+                <option value="{{ quiz.id }}">{{ quiz.title }}</option>
+                {% endfor %}
+            </select>
+
+            
+            <h3 style="color: rgb(25, 108, 181); text-align: left;">Questions:</h3>
+            {% for question in questions %}
+            <p style=" text-align: left;"><strong>{{ question.text }}</strong></p>
+            <div class="options-container">
+                <label><input type="radio" name="question_{{ question.id }}" value="A" required> {{ question.option_a }}</label>
+                <label><input type="radio" name="question_{{ question.id }}" value="B"> {{ question.option_b }}</label>
+                <label><input type="radio" name="question_{{ question.id }}" value="C"> {{ question.option_c }}</label>
+                <label><input type="radio" name="question_{{ question.id }}" value="D"> {{ question.option_d }}</label>
+            </div>
+            {% endfor %}
+
+            <button type="submit" style="color: rgb(210, 213, 215); text-align: center;">Submit Quiz</button>
+        </form>
+    </div>
+
+</body>
+</html>

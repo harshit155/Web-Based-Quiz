@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+
+    <div class="nav">
+        <h2>User Dashboard</h2>
+        <div>
+            <a href="{% url 'take_quiz' %}">Take Quiz</a>
+            <a href="{% url 'view_score' %}">View Scores</a> 
+            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome, User!</h1>
+        <p>Select an option to start.</p>
+    </div>
+
+</body>
+</html>
